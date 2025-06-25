@@ -1,13 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Redirigiendo a Stack Overflow...</title>
-    <script>
-        // Redirección instantánea
-        window.location.replace("https://forms.gle/LBfnqgpm5dFx8Wok6");
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Áreas</title>
+  <!-- Tailwind CSS CDN (versión minificada) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- Estilos personalizados (opcional) -->
+  <style>
+    .btn-rural:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.3);
+    }
+    .btn-urban:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+    }
+  </style>
 </head>
-<body>
-    <p>Si no eres redirigido automáticamente, <a href="https://stackoverflow.com">haz clic aquí</a>.</p>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <div id="app" class="flex-grow container mx-auto px-4 py-12">
+    <!-- Header -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">Sistema de Acceso</h1>
+      <p class="text-lg text-gray-600">Seleccione su área de interés:</p>
+    </header>
+
+    <!-- Botones -->
+    <main class="flex justify-center gap-8 flex-wrap">
+      <!-- Botón Área Rural -->
+      <button 
+        @click="openRural"
+        class="btn-rural w-64 h-64 bg-emerald-500 text-white rounded-xl flex flex-col items-center justify-center transition-all duration-300 hover:bg-emerald-600"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+        <span class="text-2xl font-semibold">Área Rural</span>
+      </button>
+
+      <!-- Botón Área Urbana -->
+      <button 
+        @click="openUrban"
+        class="btn-urban w-64 h-64 bg-blue-500 text-white rounded-xl flex flex-col items-center justify-center transition-all duration-300 hover:bg-blue-600"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+        <span class="text-2xl font-semibold">Área Urbana</span>
+      </button>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 text-center text-gray-500 text-sm">
+      <p>© 2024 - Todos los derechos reservados</p>
+    </footer>
+  </div>
+
+  <!-- Vue App -->
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          ruralUrl: 'https://ejemplo.com/rural',  // Cambiar por tu URL real
+          urbanUrl: 'https://ejemplo.com/urban'   // Cambiar por tu URL real
+        };
+      },
+      methods: {
+        openRural() {
+          // Misma pestaña
+          window.location.href = this.ruralUrl;
+        },
+        openUrban() {
+          // Nueva pestaña
+          window.open(this.urbanUrl, '_blank');
+        }
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>
